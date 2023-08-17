@@ -1,13 +1,6 @@
 // Imports
 import asyncHandler from "express-async-handler";
-
-/*
-    1) POST     - /api/users - Register a user
-    2) POST     - /api/users/auth - Authenticate a user and get token
-    3) POST     - /api/users/logout - Logout user and clear cookie
-    4) GET      - /api/users/profile - Get user profile
-    5) PUT      - /api/users/profile - Update profile
-*/
+import User from "../models/userModel.js";
 
 //  @desc   Auth user/set token
 //  @route  POST /api/users/auth
@@ -20,7 +13,30 @@ const authUser = asyncHandler(async (req, res) => {
 //  @route  POST /api/users
 //  @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Register User" });
+  // Fetching Form Data
+  const { name, email, password } = req.body;
+
+  // Check if user exists
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists!");
+  }
+
+  //   Creating a new user if it doesn't exist
+  const user = await User.create({
+    name,
+    email,
+    password,
+  });
+
+  if (user) {
+    res.status(201).json({ _id: user._id, name: user.name, email: user.email });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data!");
+  }
 });
 
 //  @desc   Logout user
