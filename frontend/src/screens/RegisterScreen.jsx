@@ -24,7 +24,7 @@ const RegisterScreen = () => {
             <Form.Label>Enter Name</Form.Label>
             <Form.Control
               type="text"
-              placeHolder="Enter Name"
+              placeholder="Enter Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
@@ -33,7 +33,7 @@ const RegisterScreen = () => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="email"
-              placeHolder="Enter Email"
+              placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
@@ -42,7 +42,7 @@ const RegisterScreen = () => {
             <Form.Label>Enter Password</Form.Label>
             <Form.Control
               type="password"
-              placeHolder="Enter Password"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
