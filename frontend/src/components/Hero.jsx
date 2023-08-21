@@ -1,6 +1,6 @@
 import { Container, Card, Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
   const { userInfo } = useSelector((state) => state.auth);
