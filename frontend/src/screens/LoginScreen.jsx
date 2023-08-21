@@ -6,6 +6,7 @@ import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import FormContainer from "../components/FormContainer";
 import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 const LoginScreen = () => {
   // State Variables
@@ -64,9 +65,13 @@ const LoginScreen = () => {
             ></Form.Control>
           </Form.Group>
 
-          <Button type="submit" variant="primary" className="mt-3">
-            Sign In
-          </Button>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <Button type="submit" variant="primary" className="mt-3">
+              Sign In
+            </Button>
+          )}
 
           <Row className="py-3">
             <Col>
